@@ -1,7 +1,7 @@
 ---
 title: "Occupancy literature review"
 description: |
-  A review of Bayesian hierarchical occupancy modeling
+  A review of hierarchical occupancy modeling
 author:
   - name: Christian Stratton
     affiliation: Montana State University
@@ -19,6 +19,8 @@ date: "`r Sys.Date()`"
 output: 
   distill::distill_article:
     self_contained: false
+    toc: true
+    toc_depth: 3
 bibliography: references.bib
 csl: biometrics_notes.csl
 ---
