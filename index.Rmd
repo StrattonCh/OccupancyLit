@@ -22,13 +22,46 @@ output:
   
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+```{r setup, include = F}
+rm(list = ls())
+
+library(knitr)
+hook_chunk <- knitr::knit_hooks$get('chunk')
+knit_hooks$set(chunk = function(x, options) {
+
+  # add latex commands if chunk option singlespacing is TRUE
+  if(isTRUE(options$singlespacing)){
+    return(sprintf("\\singlespacing\n %s \n\\doublespacing", hook_chunk(x, options)))
+  } else{
+    return(hook_chunk(x, options))
+  }
+})
+knitr::opts_chunk$set(
+  fig.align = "center",
+  tidy = T,
+  singlespacing = TRUE,
+  cache = FALSE,
+  fig.dim = c(10,8),
+  message = FALSE,
+  warning = FALSE,
+  comment = NA,
+  echo = F
+)
+
+
+# packages
+packs <- c("dplyr", "nimble", "htmltools", "ggplot2", "sf", "Rcpp", "RcppArmadillo", "inline", "mvtnorm", "readr", "parallel", "xtable", "rstan", "coda", "vegan", "tidyr", "gganimate", "stringr", "scatterplot3d", "plot3D", "plotly", "tidyverse", "ggalluvial", "lubridate", "ggnewscale")
+sapply(packs, require, character.only = T)
+rm(packs)
+options(tidyverse.quiet = TRUE)
+
+# convenience
+`%notin%` <- Negate("%in%")
+
+# stan settings
+options(mc.cores = parallel::detectCores() - 1)
+rstan_options(auto_write = TRUE)
 ```
-
-Distill is a publication format for scientific and technical writing, native to the web. 
-
-Learn more about using Distill for R Markdown at <https://rstudio.github.io/distill>.
 
 
 
