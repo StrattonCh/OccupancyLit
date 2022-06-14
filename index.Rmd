@@ -66,4 +66,23 @@ rstan_options(auto_write = TRUE)
 
 # 2002
 
-# References
+## @mackenzie2002
+
+### Executive summary
+
+The authors propose a novel modeling framework capable of estimating site-level occupancy when detection probabilities are less than 1. Using simulation, the authors show that their model provides reasonably unbiased estimates of occupancy when detection probabilities are at least 0.3. For low detection probabilities, occupancy probabilities tend to be overestimated.  The authors apply their model to a field study involving American toads. 
+
+### Model formulation
+
+Assume that $i$ sites are visited $j$ times each. Let $z_i$ denote the latent, partially observed occupancy state of site $i$ and $y_{ij}$ denote observed detections of the target species. Let $\psi_i$ denote the probability that site $i$ is occupied and $p_{ij}$ denote the probability that the target species is detected on visit $j$ to site $i$.
+\[
+\begin{split}
+z_i &\sim \text{Bernoulli}(\psi_i) \\
+y_{ij} &\sim \text{Bernoulli}(p_{ij})
+\end{split}
+\]
+
+# 2003
+
+## @mackenzie2003
+

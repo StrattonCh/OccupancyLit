@@ -86,6 +86,27 @@ code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
+<style>
+  div.csl-bib-body { }
+  div.csl-entry {
+    clear: both;
+    }
+  .hanging div.csl-entry {
+    margin-left:2em;
+    text-indent:-2em;
+  }
+  div.csl-left-margin {
+    min-width:2em;
+    float:left;
+  }
+  div.csl-right-inline {
+    margin-left:2em;
+    padding-left:1em;
+  }
+  div.csl-indent {
+    margin-left: 2em;
+  }
+</style>
 
   <!--radix_placeholder_meta_tags-->
   <title>Occupancy literature review</title>
@@ -114,6 +135,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   <!--/radix_placeholder_meta_tags-->
   
+  <meta name="citation_reference" content="citation_title=Estimating site occupancy rates when detection probabilities are less than one;citation_publication_date=2002;citation_volume=83;citation_doi=https://doi.org/10.1890/0012-9658(2002)083[2248:ESORWD]2.0.CO;2;citation_author=Darryl I. MacKenzie;citation_author=James D. Nichols;citation_author=Gideon B. Lachman;citation_author=Sam Droege;citation_author=J. Andrew Royle;citation_author=Catherine A. Langtimm"/>
+  <meta name="citation_reference" content="citation_title=Estimating site occupancy, colonization, and local extinction when a species is detected imperfectly;citation_publication_date=2003;citation_volume=84;citation_doi=https://doi.org/10.1890/02-3090;citation_author=Darryl I. MacKenzie;citation_author=James D. Nichols;citation_author=James E. Hines;citation_author=Melinda G. Knutson;citation_author=Alan B. Franklin"/>
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
@@ -1531,9 +1554,56 @@ class="uri">https://math.montana.edu/</a>
 
 <div class="d-article">
 <h1 id="section">2002</h1>
-<h1 id="references">References</h1>
+<h2 id="mackenzie2002"><span class="citation"
+data-cites="mackenzie2002">MacKenzie et al. (<a
+href="#ref-mackenzie2002" role="doc-biblioref">2002</a>)</span></h2>
+<h3 id="executive-summary">Executive summary</h3>
+<p>The authors propose a novel modeling framework capable of estimating
+site-level occupancy when detection probabilities are less than 1. Using
+simulation, the authors show that their model provides reasonably
+unbiased estimates of occupancy when detection probabilities are at
+least 0.3. For low detection probabilities, occupancy probabilities tend
+to be overestimated. The authors apply their model to a field study
+involving American toads.</p>
+<h3 id="model-formulation">Model formulation</h3>
+<p>Assume that <span class="math inline">\(i\)</span> sites are visited
+<span class="math inline">\(j\)</span> times each. Let <span
+class="math inline">\(z_i\)</span> denote the latent, partially observed
+occupancy state of site <span class="math inline">\(i\)</span> and <span
+class="math inline">\(y_{ij}\)</span> denote observed detections of the
+target species. Let <span class="math inline">\(\psi_i\)</span> denote
+the probability that site <span class="math inline">\(i\)</span> is
+occupied and <span class="math inline">\(p_{ij}\)</span> denote the
+probability that the target species is detected on visit <span
+class="math inline">\(j\)</span> to site <span
+class="math inline">\(i\)</span>. <span class="math display">\[
+\begin{split}
+z_i &amp;\sim \text{Bernoulli}(\psi_i) \\
+y_{ij} &amp;\sim \text{Bernoulli}(p_{ij})
+\end{split}
+\]</span></p>
+<h1 id="section-1">2003</h1>
+<h2 id="mackenzie2003"><span class="citation"
+data-cites="mackenzie2003">MacKenzie et al. (<a
+href="#ref-mackenzie2003" role="doc-biblioref">2003</a>)</span></h2>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div id="refs" class="references csl-bib-body hanging-indent"
+role="doc-bibliography">
+<div id="ref-mackenzie2003" class="csl-entry" role="doc-biblioentry">
+MacKenzie, D.I., Nichols, J.D., Hines, J.E., Knutson, M.G. and Franklin,
+A.B. (2003) <a href="https://doi.org/10.1890/02-3090">Estimating site
+occupancy, colonization, and local extinction when a species is detected
+imperfectly</a>. <em>Ecology</em>, <strong>84</strong>, 2200–2207.
+</div>
+<div id="ref-mackenzie2002" class="csl-entry" role="doc-biblioentry">
+MacKenzie, D.I., Nichols, J.D., Lachman, G.B., Droege, S., Andrew Royle,
+J. and Langtimm, C.A. (2002) <a
+href="https://doi.org/10.1890/0012-9658(2002)083[2248:ESORWD]2.0.CO;2">Estimating
+site occupancy rates when detection probabilities are less than one</a>.
+<em>Ecology</em>, <strong>83</strong>, 2248–2255.
+</div>
+</div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
@@ -1541,6 +1611,15 @@ class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"><
 <div class="d-appendix">
 </div>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
