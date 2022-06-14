@@ -19,7 +19,8 @@ date: "`r Sys.Date()`"
 output: 
   distill::distill_article:
     self_contained: false
-  
+bibliography: references.bib
+csl: biometrics_notes.csl
 ---
 
 ```{r setup, include = F}
@@ -63,7 +64,6 @@ options(mc.cores = parallel::detectCores() - 1)
 rstan_options(auto_write = TRUE)
 ```
 
+# 2002
 
-
-
-
+# References
