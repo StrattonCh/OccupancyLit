@@ -114,8 +114,12 @@ Then,
 \[
 \begin{split}
 Z_{i, 1} &\sim \text{Bernoulli}(\psi_{i, 1}) \\
-Z_{i,t} | Z_{i, t-1} = 0 &\sim \text{Bernoulli}(\gamma_{t-1}) \text{ for } t \geq 2 \\
-Z_{i,t} | Z_{i, t-1} = 1 &\sim \text{Bernoulli}(1 - \epsilon_{t-1}) \text{ for } t \geq 2 \\
+Z_{i,t} | Z_{i, t-1} &\sim \text{Bernoulli}(\pi_{i,t}) \text{ for } t \geq 2 \\
+\pi_{i,t} &= 
+\begin{cases}
+1 - \epsilon_{t-1} & \text{for } z_{t-1} = 1 \\
+\gamma_{t-1} & \text{for } z_{t-1} = 0
+\end{cases} \\ \\
 y_{ij,t} &\sim \text{Bernoulli}(z_{i,t}p_{ij, t})
 \end{split}
 \]

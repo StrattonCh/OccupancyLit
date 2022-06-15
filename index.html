@@ -1678,10 +1678,13 @@ class="math inline">\(t\)</span></li>
 <p>Then, <span class="math display">\[
 \begin{split}
 Z_{i, 1} &amp;\sim \text{Bernoulli}(\psi_{i, 1}) \\
-Z_{i,t} | Z_{i, t-1} = 0 &amp;\sim \text{Bernoulli}(\gamma_{t-1}) \text{
-for } t \geq 2 \\
-Z_{i,t} | Z_{i, t-1} = 1 &amp;\sim \text{Bernoulli}(1 - \epsilon_{t-1})
-\text{ for } t \geq 2 \\
+Z_{i,t} | Z_{i, t-1} &amp;\sim \text{Bernoulli}(\pi_{i,t}) \text{ for }
+t \geq 2 \\
+\pi_{i,t} &amp;=
+\begin{cases}
+1 - \epsilon_{t-1} &amp; \text{for } z_{t-1} = 1 \\
+\gamma_{t-1} &amp; \text{for } z_{t-1} = 0
+\end{cases} \\ \\
 y_{ij,t} &amp;\sim \text{Bernoulli}(z_{i,t}p_{ij, t})
 \end{split}
 \]</span></p>
