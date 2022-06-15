@@ -20,7 +20,7 @@ output:
   distill::distill_article:
     self_contained: false
     toc: true
-    toc_depth: 3
+    toc_depth: 2
 bibliography: references.bib
 csl: biometrics_notes.csl
 ---
@@ -72,14 +72,21 @@ rstan_options(auto_write = TRUE)
 
 ### Executive summary
 
-The authors propose a novel modeling framework capable of estimating site-level occupancy when detection probabilities are less than 1. Using simulation, the authors show that their model provides reasonably unbiased estimates of occupancy when detection probabilities are at least 0.3. For low detection probabilities, occupancy probabilities tend to be overestimated.  The authors apply their model to a field study involving American toads. 
+The authors propose a novel modeling framework capable of estimating site-level occupancy when detection probabilities are less than 1. The authors provide a likelihood based method for estimation by marginalizing out the latent occupancy states. Using simulation, the authors show that their model provides reasonably unbiased estimates of occupancy when detection probabilities are at least 0.3. For low detection probabilities, occupancy probabilities tend to be overestimated.  The authors apply their model to a field study involving American toads. 
 
 ### Model formulation
 
-Assume that $i$ sites are visited $j$ times each. Let $z_i$ denote the latent, partially observed occupancy state of site $i$ and $y_{ij}$ denote observed detections of the target species. Let $\psi_i$ denote the probability that site $i$ is occupied and $p_{ij}$ denote the probability that the target species is detected on visit $j$ to site $i$.
+Assume that $i$ sites are visited $j$ times each. Let
+
+  * $Z_i$ denote the latent, partially observed occupancy state of site $i$
+  * $y_{ij}$ denote observed detections of the target species.
+  * $\psi_i$ denote the probability that site $i$ is occupied 
+  * $p_{ij}$ denote the probability that the target species is detected on visit $j$ to site $i$.
+  
+Then, 
 \[
 \begin{split}
-z_i &\sim \text{Bernoulli}(\psi_i) \\
+Z_i &\sim \text{Bernoulli}(\psi_i) \\
 y_{ij} &\sim \text{Bernoulli}(p_{ij})
 \end{split}
 \]
@@ -87,4 +94,68 @@ y_{ij} &\sim \text{Bernoulli}(p_{ij})
 # 2003
 
 ## [@mackenzie2003] Estimating site occupancy, colonization, and local extinction when a species is detected imperfectly
+
+### Executive summary
+
+The authors extend the model of @mackenzie2002 to accommodate longitudinal survey designs in which $i$ sites are visited $j$ times each over $t$ seasons. The authors provide a likelihood based method for estimation by marginalizing out the latent occupancy states. Using simulation, the authors show that parameter estimates are generally unbiased, except when both the number of visits to each site during a season is small and the detection probability is small. The authors apply their model to two field studies, involving spotted owls and tiger salamanders, respectively. 
+
+### Model formulation
+
+Assume that $i$ sites are visited $j$ times each across $t$ seasons. Let 
+  
+  * $Z_{i,t}$ denote the latent, partially observed occupancy state of site $i$ in season $t$
+  * $y_{ij, t}$ denoted observed detections of the target species on visit $j$ at site $i$ during season $t$
+  * $\psi_{i, t}$ denote the probability that site $i$ is occupied during season $t$
+  * $\gamma_{t-1}$ denote the probability that a site unoccupied during season $t-1$ becomes occupied during season $t$ (colonization)
+  * $\epsilon_{t-1}$ denote the probability that a site occupied during season $t-1$ becomes unoccupied during season $t$ (extinction)
+  * $p_{ij,t}$ that the target species is detected on visit $j$ to site $i$ during season $t$
+  
+Then,
+\[
+\begin{split}
+Z_{i, 1} &\sim \text{Bernoulli}(\psi_{i, 1}) \\
+Z_{i,t} | Z_{i, t-1} = 0 &\sim \text{Bernoulli}(\gamma_{t-1}) \text{ for } t \geq 2 \\
+Z_{i,t} | Z_{i, t-1} = 1 &\sim \text{Bernoulli}(1 - \epsilon_{t-1}) \text{ for } t \geq 2 \\
+y_{ij,t} &\sim \text{Bernoulli}(z_{i,t}p_{ij, t})
+\end{split}
+\]
+
+# 2007 
+
+## [@royle2007] A Bayesian state-space formulation of dynamic occupancy models
+
+### Executive summary
+
+The authors provide a Bayesian state-space representation of the dynamic occupancy model developed by @mackenzie2003 and provide WINBugs code to fit their model. The authors apply their model to two field studies, concerning the European crossbill and Cerulean warbler, respectively.
+
+### Model formulation
+
+Assume that $i$ sites are visited $j$ times each across $t$ seasons. Let 
+  
+  * $Z_{i,t}$ denote the latent, partially observed occupancy state of site $i$ in season $t$
+  * $y_{ij, t}$ denoted observed detections of the target species on visit $j$ at site $i$ during season $t$
+  * $\psi_{i, t}$ denote the probability that site $i$ is occupied during season $t$
+  * $\gamma_{t-1}$ denote the probability that a site unoccupied during season $t-1$ becomes occupied during season $t$ (colonization)
+  * $\phi_{t-1}$ denote the probability that a site occupied during season $t-1$ remains occupied during season $t$ (survival)
+  * $p_{ij,t}$ that the target species is detected on visit $j$ to site $i$ during season $t$
+
+Then,
+\[
+\begin{split}
+Z_{i, 1} &\sim \text{Bernoulli}(\psi_{i, 1}) \\
+Z_{i,t} | Z_{i, t-1} &\sim \text{Bernoulli}(\pi_{i,t}) \text{ for } t \geq 2 \\
+\pi_{i,t} &= 
+\begin{cases}
+\phi_{t-1} & \text{for } z_{t-1} = 1 \\
+\gamma_{t-1} & \text{for } z_{t-1} = 0
+\end{cases} \\
+y_{ij, t} &\sim \text{Bernoulli}(z_{i,t}p_{ij,t})
+\end{split}
+\]
+
+### Notes
+
+Note that this model is equivalent to that of @mackenzie2003, with $\phi_{t-1} = 1 - \epsilon_{t-1}$. 
+
+
 
